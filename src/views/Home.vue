@@ -175,6 +175,7 @@ export default {
     margin: auto 0 auto auto;    
     width: 968px;
     height: 100vh;
+    min-height: 1024px;
   }  
 }
 
@@ -364,6 +365,7 @@ export default {
     }
     img{
       height: 100vh;
+      min-height: 1024px;
       width: auto;
       filter: grayscale(0);    
       transition: all 0.5s ease-in-out;
