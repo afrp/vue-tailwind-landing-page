@@ -163,7 +163,7 @@ export default {
         class="btn-back" 
         :style="[lateAnim ? {color: '#FFFFFF'} : {color: '#2D2D2D'}]"
         v-if="page === 2" 
-        @click="page = 1;" 
+        @click="page = 1; activeMenu = 1" 
         role="button"
       >
         <ArrowBack/>
