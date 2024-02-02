@@ -214,6 +214,7 @@ export default {
   position: relative;
   width: 961px;
   height: 598px;
+  min-height: 598px;
   margin: auto calc(50% - 480.5px) auto auto;
   transition: all 0.3s ease-in-out;  
   &.to-left{
