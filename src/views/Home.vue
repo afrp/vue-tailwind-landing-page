@@ -21,8 +21,14 @@ export default {
           email: '',
         },
         carousel: true,
+        listShow: false,
       };
   }, 
+  watch:{
+    listShow(newVal){
+      console.log('masuk', newVal);
+    }
+  },
   computed:{
     bgTransition(){
       if (this.activeMenu === 2){
@@ -54,13 +60,13 @@ export default {
 
 <template>
   <div class="container flex">
+    <div class="line-one top" :class="{'active-one' : listShow === true}"></div>
+    <div class="line-two top second" :class="{'active-two' : listShow === true}"></div>
+    <div class="line-one bottom" :class="{'active-one' : listShow === true}"></div>
+    <div class="line-two bottom second" :class="{'active-two' : listShow === true}"></div>
     <div class="page-wrap" :class="{'to-left': page === 2}">
       <transition name="fade" mode="out-in">
-        <div v-show="page === 1" class="card-intro">
-          <div class="line-one top"></div>
-          <div class="line-two top second"></div>
-          <div class="line-one bottom"></div>
-          <div class="line-two bottom second"></div>
+        <div v-show="page === 1" class="card-intro" @mouseover="listShow = true" @mouseleave="listShow = false">          
           <div class="flex justify-center items-center w-full h-full overflow-hidden">
             <img                                        
                 src="/image-intro.png"
@@ -163,6 +169,33 @@ export default {
     width: 100%;
     overflow: hidden;
     position: relative;
+    .line-one, .line-two{
+      position: absolute;    
+      height: 18px;
+      background: #FFB800;
+      width: 0;
+      transition: all 0.4s ease-in-out;
+      &.active-two{
+        width: 140px;
+      }
+      &.active-one{
+        width: 67px;
+      }
+      &.top{
+        top: 50px;
+        right: 210px;
+        &.second{
+          right: 50px;
+        }
+      }
+      &.bottom{
+        bottom: 50px;      
+        left: 210px;
+        &.second{
+          left: 50px;  
+        }
+      }
+    }
 }
 .page-wrap{  
   position: relative;
@@ -248,7 +281,7 @@ export default {
       background: #FFB800;
       position: absolute;
       transition: left 0.4s ease-in-out;
-      left: -81vw;
+      left: -85vw;
       top: 0;
     } 
     span{
@@ -260,28 +293,6 @@ export default {
       height: auto;
       transition: all 0.5s ease-in-out;
       transform: translateX(33vw);
-    }
-  }
-  
-  .line-one, .line-two{
-    position: fixed;
-    height: 18px;
-    background: #FFB800;
-    width: 0;
-    transition: all 0.4s ease-in-out;
-    &.top{
-      top: 50px;
-      right: 210px;
-      &.second{
-        right: 50px;
-      }
-    }
-    &.bottom{
-      bottom: 50px;      
-      left: 210px;
-      &.second{
-        left: 50px;  
-      }
     }
   }
   
@@ -305,13 +316,7 @@ export default {
       span, svg{
         transform: translateX(0);
       }
-    }
-    .line-two{
-        width: 140px;
-      }
-      .line-one{
-        width: 67px;
-      }
+    }    
   }  
 }
 
