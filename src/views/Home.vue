@@ -22,12 +22,22 @@ export default {
         },
         carousel: true,
         listShow: false,
+        carouselData: ['We Solve Your', 'We Know You Have', 'We Solve Your'],
+        bgPage2:[
+          {
+            img: '/bg-menu-1.png',
+            alt: 'About us'
+          },
+          {
+            img: '/bg-menu-2.png',
+            alt: 'Our Product'
+          },
+          {
+            img: '/bg-menu-3.png',
+            alt: 'Contact us'
+          },
+        ]        
       };
-  }, 
-  watch:{
-    listShow(newVal){
-      console.log('masuk', newVal);
-    }
   },
   computed:{
     bgTransition(){
@@ -89,9 +99,13 @@ export default {
         <div class="wrap-menu">
           <div class="bg-menu-image">
             <div class="flex flex-col img-wrap" :style="bgTransition">
-              <img src="/bg-menu-1.png" :style="[lateAnim ? {filter: 'grayscale(100%)'} : {}]" alt="About us"/>
-              <img src="/bg-menu-2.png" :style="[lateAnim ? {filter: 'grayscale(100%)'} : {}]" alt="Our Product"/>
-              <img src="/bg-menu-3.png" :style="[lateAnim ? {filter: 'grayscale(100%)'} : {}]" alt="Contact us"/>              
+              <img 
+                v-for="(data, index) in bgPage2"
+                :key="index"
+                :src="data.img" 
+                :style="[lateAnim ? {filter: 'grayscale(100%)'} : {}]" 
+                :alt="data.alt"
+              />              
             </div>
             <!-- <div class="overlay" :class="{in: lateAnim === true}"></div> -->
           </div>
@@ -110,15 +124,14 @@ export default {
             <div v-show="activeMenu === 2 && lateAnim" ref="page2" class="content-page page-two">
               <div class="relative w-full h-full">
                 <div class="wrap-carousel">
-                  <CardContent title="We Solve Your" class="card-carousel">
+                  <CardContent                     
+                    v-for="(data,index) in carouselData"
+                    :key="index" 
+                    :title="data"
+                    class="card-carousel"
+                  >
                     <div class="text-carousel">PROBLEM</div>
-                  </CardContent>
-                  <CardContent title="We Know You Have" class="card-carousel">
-                    <div class="text-carousel">PROBLEM</div>
-                  </CardContent>
-                  <CardContent title="We Solve Your" class="card-carousel">
-                    <div class="text-carousel">PROBLEM</div>
-                  </CardContent>
+                  </CardContent>                  
                 </div>              
               </div>            
             </div>
