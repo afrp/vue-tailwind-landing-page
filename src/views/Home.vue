@@ -74,6 +74,19 @@ export default {
     <div class="line-two top second" :class="{'active-two' : listShow === true}"></div>
     <div class="line-one bottom" :class="{'active-one' : listShow === true}"></div>
     <div class="line-two bottom second" :class="{'active-two' : listShow === true}"></div>
+    <div v-show="page === 2" class="bg-menu-list" :class="{in: lateAnim === true}"></div>
+    <transition name="fade" mode="out-in">
+      <div 
+        class="btn-back" 
+        :style="[lateAnim ? {color: '#FFFFFF'} : {color: '#2D2D2D'}]"
+        v-if="page === 2" 
+        @click="page = 1; activeMenu = 1" 
+        role="button"
+      >
+        <ArrowBack/>
+        <span>Back</span>
+      </div>
+    </transition>
     <div class="page-wrap" :class="{'to-left': page === 2}">
       <transition name="fade" mode="out-in">
         <div v-show="page === 1" class="card-intro" @mouseover="listShow = true" @mouseleave="listShow = false">          
@@ -94,7 +107,7 @@ export default {
           </div>
         </div>                
       </transition>
-      <div v-show="page === 2" class="bg-menu-list" :class="{in: lateAnim === true}"></div>
+      
       <div class="card-menu" :class="{'show': page === 2}">
         <div class="wrap-menu">
           <div class="bg-menu-image">
@@ -157,19 +170,7 @@ export default {
             </CardContent>            
           </div>          
         </div>        
-      </div>
-      <transition name="fade" mode="out-in">
-      <div 
-        class="btn-back" 
-        :style="[lateAnim ? {color: '#FFFFFF'} : {color: '#2D2D2D'}]"
-        v-if="page === 2" 
-        @click="page = 1; activeMenu = 1" 
-        role="button"
-      >
-        <ArrowBack/>
-        <span>Back</span>
-      </div>
-      </transition>
+      </div>      
     </div>
   </div>  
 </template>
@@ -353,7 +354,7 @@ export default {
   width: 0;
   height: 288px;
   background: #FFB800;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   transition: width 0.4s ease-in-out;
@@ -522,7 +523,7 @@ export default {
   }
 }
 .btn-back{
-  position:fixed;
+  position: absolute;
   top: 46px;
   left: 46px; 
   display: flex;
