@@ -1,8 +1,8 @@
 # vue-tailwind-landing-page
 
 using 
-- npm version 8.11.0 
-- node version 16.15.1
+- npm version 8.19.4 
+- node version 16.20.1
 - vue version 3.3.4
 - tailwindcss version 3.4.1
 - vite version 4.4.5
